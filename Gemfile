@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+#Handles file uploading and storage
+gem 'carrierwave', '~> 2.1'
 #Use Devise for user authentificaiton and session management
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
