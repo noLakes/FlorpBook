@@ -1,0 +1,8 @@
+<h1>Feed</h1>
+
+<% @posts.each do |p| %>
+  <%= p.author.handle %>
+  </br>
+  <%= p.body %>
+  </br></br>
+<% end %>
