@@ -5,7 +5,11 @@
   <%= render "form" %></br></br>
 
   <% @posts.each do |p| %>
-    <%= p.author.handle %>
+    <% if p.author.handle == "" %>
+      <%= p.author.name %>
+    <% else %>
+      <%= p.author.handle %>
+    <% end %>
     </br>
     <%= p.body %>
     </br><%= link_to  "comment", new_comment_path(post_id: p.id) %>
