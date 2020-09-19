@@ -8,9 +8,10 @@
     <%= p.author.handle %>
     </br>
     <%= p.body %>
+    </br><%= link_to  "comment", new_comment_path(post_id: p.id) %>
     </br></br>
   <% end %>
-  
+
 <% else %>
   <%= link_to  "Please log in to see your feed!", user_sign_in_path %>
 <% end %>
