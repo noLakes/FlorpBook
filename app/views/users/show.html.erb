@@ -1,0 +1,15 @@
+<h3><%= "#{@user.name}" %></h3>
+
+<h3>Posts</h3>
+
+<% @user.posts.each do |p| %>
+  <% if @user.handle == "" %>
+    <%= @user.name %>
+  <% else %>
+    <%= @user.handle %>
+  <% end %>
+  </br>
+  <%= p.body %>
+  </br><%= link_to  "comment", new_comment_path(post_id: p.id) %>
+   </br></br>
+<% end %>
