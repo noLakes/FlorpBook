@@ -4,17 +4,7 @@
   <h3>something on your mind?</h3>
   <%= render "form" %></br></br>
 
-  <% @posts.each do |p| %>
-    <% if p.author.handle == "" %>
-      <%= link_to  p.author.name,  user_path(p.author.id)%>
-    <% else %>
-      <%= link_to  p.author.handle, user_path(p.author.id) %>
-    <% end %>
-    </br>
-    <%= p.body %>
-    </br><%= link_to  "comment", new_comment_path(post_id: p.id) %>
-    </br></br>
-  <% end %>
+<%= render "post_feed" %>
 
 <% else %>
   <%= link_to  "Please log in to see your feed!", user_sign_in_path %>
