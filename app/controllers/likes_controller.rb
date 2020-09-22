@@ -6,15 +6,18 @@ class LikesController < ApplicationController
     @subject = type_subject?(params)[1]
     notice = "#{type}"
     return unless @subject
+
     if already_liked?(type)
       dislike(type)
     else
       @like = @subject.likes.build(user_id: current_user.id)
+
       if @like.save!
         flash[:success] = "#{notice} liked!"
-
+        redirect_back(fallback_location: root_path)
       else
         flash[:danger] = "#{notice} like failed!"
+      end
     end
   end
 
