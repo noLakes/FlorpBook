@@ -10,8 +10,9 @@
       <%= @user.handle %>
     <% end %>
     </br>
-    <%= p.body %>
-    </br><%= link_to  "comment", new_comment_path(post_id: p.id) %>
+    <%= p.body %></br>
+    <%= link_to  "like", post_likes_path(p.id), method: :post %>
+    <%= link_to  "comment", new_comment_path(post_id: p.id) %>
   </div>
 
   <% p.comments.each do |c| %>
@@ -22,7 +23,8 @@
         <%= link_to  c.author.handle, user_path(c.author.id) %>
       <% end %>
       </br>
-      <%= c.body %>
+      <%= c.body %></br>
+      <%= link_to  "like", comment_likes_path(c.id), method: :post %>
     </div>
   <% end %>
 
