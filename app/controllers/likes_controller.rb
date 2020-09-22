@@ -9,16 +9,17 @@ class LikesController < ApplicationController
 
     if already_liked?(type)
       dislike(type)
+      flash[:notice] = "#{notice} unliked"
     else
       @like = @subject.likes.build(user_id: current_user.id)
 
       if @like.save!
         flash[:notice] = "#{notice} liked!"
-        redirect_back(fallback_location: root_path)
       else
         flash[:notice] = "#{notice} like failed!"
       end
     end
+    redirect_back(fallback_location: root_path)
   end
 
   private
