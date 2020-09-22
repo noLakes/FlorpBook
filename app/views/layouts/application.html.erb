@@ -10,6 +10,19 @@
   </head>
 
   <body>
+
+    <% if flash[:notice] %>
+      <div class="flash_notifcation">
+        <p class="good"><%= flash[:notice] %></p>
+      </div>
+    <% end %>
+
+    <% if flash[:fail] %>
+      <div class="flash_notification">
+        <p class="bad"><%= flash[:fail] %></p>
+      </div>
+    <% end %>
+
   <table>
     <% if user_signed_in? %>
       <tr>

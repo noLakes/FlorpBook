@@ -13,10 +13,10 @@ class LikesController < ApplicationController
       @like = @subject.likes.build(user_id: current_user.id)
 
       if @like.save!
-        flash[:success] = "#{notice} liked!"
+        flash[:notice] = "#{notice} liked!"
         redirect_back(fallback_location: root_path)
       else
-        flash[:danger] = "#{notice} like failed!"
+        flash[:notice] = "#{notice} like failed!"
       end
     end
   end
