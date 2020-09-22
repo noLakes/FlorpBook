@@ -1,14 +1,16 @@
 
   <% @posts.each do |p| %>
-    <% if p.author.handle == "" %>
-      <%= link_to  p.author.name,  user_path(p.author.id)%>
-    <% else %>
-      <%= link_to  p.author.handle, user_path(p.author.id) %>
-    <% end %>
-    </br>
-    <%= p.body %>
-    </br><%= link_to  "comment", new_comment_path(post_id: p.id) %></br>
-    
+    <div class="post">  
+      <% if p.author.handle == "" %>
+        <%= link_to  p.author.name,  user_path(p.author.id)%>
+      <% else %>
+        <%= link_to  p.author.handle, user_path(p.author.id) %>
+      <% end %>
+      </br>
+      <%= p.body %>
+      </br><%= link_to  "comment", new_comment_path(post_id: p.id) %></br>
+    </div>
+
       <% p.comments.each do |c| %>
         <div class="comment">  
           <% if c.author.handle == "" %>
