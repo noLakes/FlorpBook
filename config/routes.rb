@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :friend_requests, only: [:create]
+  end
   
   resources :posts do
     resources :likes, only: [:create]
