@@ -1,6 +1,7 @@
 <h1><%= "#{@user.name}" %></h1>
 
-<%= link_to  "Add Friend", user_friend_requests_path(@user.id) %>
+<%= link_to  "Add Friend", user_friend_requests_path(@user.id),
+                                              method: :post %>
 
 <h3>Posts</h3>
 
