@@ -9,7 +9,10 @@
       </br>
       <%= p.body %></br>
       <%= link_to  "like", post_likes_path(p.id), method: :post %>
-      <%= link_to  "comment", new_comment_path(post_id: p.id) %></br>
+      <%= link_to  "comment", new_comment_path(post_id: p.id) %>
+      <% if !p.like_count.nil? %>
+        <%= "+#{p.like_count}"%>
+      <% end %></br>
     </div>
 
       <% p.comments.each do |c| %>
