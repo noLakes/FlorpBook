@@ -4,8 +4,7 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
 
   def like_count
-    likes = self.likes.count
-    likes > 0 ? likes : nil
+    self.likes.count
   end
 
 end
