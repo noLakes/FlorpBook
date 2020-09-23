@@ -25,6 +25,9 @@
           </br>
           <%= c.body %>
           </br><%= link_to  "like", comment_likes_path(c.id), method: :post %>
+          <% if !c.like_count.zero? %>
+            <%= "+#{c.like_count}"%>
+          <% end %></br>
         </div>
       <% end %>
 

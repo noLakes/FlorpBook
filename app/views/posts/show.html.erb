@@ -3,5 +3,8 @@
 <%= @post.body%></br>
 <%= link_to  "like", post_likes_path(@post.id), method: :post %>
 <%= link_to  "comment", new_comment_path(post_id: @post.id) %>
+<% if !@post.like_count.zero? %>
+    <%= "+#{@post.like_count}"%>
+<% end %>
 </br></br>
 <em><%= "posted #{@post.created_at}" %></em>
