@@ -1,11 +1,13 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!
+  include ApplicationHelper
 
   def create
     type = type_subject?(params)[0]
     @subject = type_subject?(params)[1]
     notice = "#{type}"
     return unless @subject
+    @user = @subject.author
 
     if already_liked?(type)
       dislike(type)
@@ -14,6 +16,8 @@ class LikesController < ApplicationController
       @like = @subject.likes.build(user_id: current_user.id)
 
       if @like.save!
+        @notification = new_notification(@user, @subject.id, "like-#{type}")
+        @notification.save
         flash[:notice] = "#{notice} liked!"
       else
         flash[:notice] = "#{notice} like failed!"

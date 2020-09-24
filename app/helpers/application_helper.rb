@@ -11,8 +11,8 @@ module ApplicationHelper
     r = nil
     r = FriendRequest.find(notice.notice_id) if notice_type == 'friend_request'
     r = Comment.find(notice.notice_id) if notice_type == 'comment'
-    r = Comment.find() if notice_type == 'like-comment'
-    r = Post.find() if notice_type == 'like-post'
+    r = Comment.find(notice.notice_id) if notice_type == 'like-comment'
+    r = Post.find(notice.notice_id) if notice_type == 'like-post'
     return r unless notice_type == 'comment'
     Post.find(r.post_id)
   end
