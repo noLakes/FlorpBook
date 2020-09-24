@@ -9,11 +9,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(comment_params)
-    @post = Post.find(comment_params[:post_id])
+    @user = @comment.post.author
 
     if @comment.save!
       if @user != current_user
-        @notification = new_notification(@post.author, @comment.id, 'comment')
+        @notification = new_notification(@user, @comment.id, 'comment')
         @notification.save
       end
 
