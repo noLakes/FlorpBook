@@ -1,19 +1,19 @@
 module ApplicationHelper
 
-  def new_notification(user, notice_id, type)
-    notice = user.notification.build(notice_id: notice_id,
-    type: type)
+  def new_notification(user, notice_id, notice_type)
+    notice = user.notifications.build(notice_id: notice_id,
+    notice_type: notice_type)
     return notice
   end
 
   #Returns object user is being notified about
-  def find_notification(notice, type)
+  def find_notification(notice, notice_type)
     r = nil
-    r = FriendRequest.find(notice.notice_id) if type == 'friend_request'
-    r = Comment.find(notice.notice_id) if type == 'comment'
-    r = Comment.find() if type == 'like-comment'
-    r = Post.find() if type == 'like-post'
-    return r unless type == 'comment'
+    r = FriendRequest.find(notice.notice_id) if notice_type == 'friend_request'
+    r = Comment.find(notice.notice_id) if notice_type == 'comment'
+    r = Comment.find() if notice_type == 'like-comment'
+    r = Post.find() if notice_type == 'like-post'
+    return r unless notice_type == 'comment'
     Post.find(r.post_id)
   end
 
