@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :posts, class_name: "Post", foreign_key: "author_id"
   has_many :comments, class_name: "Comment", foreign_key: "author_id"
   has_many :likes, dependent: :destroy
-  has_many :notifications, class_name: "Notification", foreign_key: "user_id"
+  has_many :notifications, dependent: :destroy
 
   has_many :sent_requests, class_name: "FriendRequest", foreign_key: "user_id"
   has_many :pending_requests, -> { where confirmed: false}, class_name: "FriendRequest",
