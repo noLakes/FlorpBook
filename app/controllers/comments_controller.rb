@@ -9,8 +9,10 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
 
     if @comment.save!
+      flash[:notice] = "Comment posted!"
       redirect_to root_path
     else
+      flash[:notice] = "Failed to post comment"
       render :new
     end
   end
