@@ -6,11 +6,15 @@ module ApplicationHelper
     return notice
   end
 
+  #IN PROGRESS - Returns object you are being notified about
   def find_notification(notice, type)
-    FriendRequest.find(notice.notice_id) if type == 'friend_request'
-    Post.find(notice.notice_id) if type == 'comment'
-    Comment.find() if type == 'like-comment'
-    Post.find() if type == 'like-post'
+    r = nil
+    r = FriendRequest.find(notice.notice_id) if type == 'friend_request'
+    r = Comment.find(notice.notice_id) if type == 'comment'
+    r = Comment.find() if type == 'like-comment'
+    r = Post.find() if type == 'like-post'
+    return r unless type == 'comment'
+    Post.find(r.post_id)
   end
 
 end
