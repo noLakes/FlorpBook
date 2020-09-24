@@ -1,4 +1,6 @@
 class FriendRequestsController < ApplicationController
+  before_action :authenticate_user!
+  include ApplicationHelper
 
   def create
     friend = User.find(params[:user_id])
