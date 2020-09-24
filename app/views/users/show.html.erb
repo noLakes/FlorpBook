@@ -1,7 +1,9 @@
 <h1><%= "#{@user.name}" %></h1>
 
-<%= link_to  "Add Friend", user_friend_requests_path(@user.id),
-                                              method: :post %>
+<% unless current_user == @user || FriendRequest.reacted?(current_user.id, @user.id) %>
+  <%= link_to  "Add Friend", user_friend_requests_path(@user.id),
+                                                method: :post %>
+<% end %>
 
 <h3>Posts</h3>
 
