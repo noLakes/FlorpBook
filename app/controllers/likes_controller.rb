@@ -16,8 +16,11 @@ class LikesController < ApplicationController
       @like = @subject.likes.build(user_id: current_user.id)
 
       if @like.save!
-        @notification = new_notification(@user, @subject.id, "like-#{type}")
-        @notification.save
+        if @user != current_user
+          @notification = new_notification(@user, @subject.id, "like-#{type}")
+          @notification.save
+        end
+
         flash[:notice] = "#{notice} liked!"
       else
         flash[:notice] = "#{notice} like failed!"
