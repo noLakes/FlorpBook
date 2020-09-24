@@ -6,7 +6,7 @@ module ApplicationHelper
     return notice
   end
 
-  #IN PROGRESS - Returns object you are being notified about
+  #Returns object user is being notified about
   def find_notification(notice, type)
     r = nil
     r = FriendRequest.find(notice.notice_id) if type == 'friend_request'
