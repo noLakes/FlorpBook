@@ -13,8 +13,8 @@ module ApplicationHelper
     r = Comment.find(notice.notice_id) if notice_type == 'comment'
     r = Comment.find(notice.notice_id) if notice_type == 'like-comment'
     r = Post.find(notice.notice_id) if notice_type == 'like-post'
-    return r unless notice_type == 'comment'
+    return r unless notice_type.include?('comment')
     Post.find(r.post_id)
   end
-  
+
 end
