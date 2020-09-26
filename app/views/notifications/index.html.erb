@@ -1,0 +1,21 @@
+<h1>Your Notifications</h1>
+
+<% if @notifications.length.zero?%>
+  <em><%= "no notifications at the moment" %></em>
+<% else %>
+  <% @notifications.each do |note| %>
+    <% if note.type == 'comment' %>
+      <%= "#{} commented on your post" %>
+    <% end %>  
+    <% if note.type == 'like-comment' %>
+
+    <% end %>
+    <% if note.type == 'like-post' %>
+
+    <% end %>   
+    <% if note.type == 'friend_request' %>
+
+    <% end %>  
+    #button logic here 
+  <% end %>
+<% end %>
