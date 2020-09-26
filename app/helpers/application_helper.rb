@@ -7,7 +7,7 @@ module ApplicationHelper
   end
 
   #Returns object user is being notified about
-  def find_notification(notice, notice_type)
+  def notification_source(notice, notice_type)
     r = nil
     r = FriendRequest.find(notice.notice_id) if notice_type == 'friend_request'
     r = Comment.find(notice.notice_id) if notice_type == 'comment'
@@ -16,5 +16,5 @@ module ApplicationHelper
     return r unless notice_type == 'comment'
     Post.find(r.post_id)
   end
-
+  
 end
