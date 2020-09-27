@@ -5,4 +5,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def index 
+    @user = User.fidn(params[:id])
+    @users = User.all
+  end
+
 end
