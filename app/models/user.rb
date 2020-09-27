@@ -6,7 +6,9 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
-  has_many :sent_requests, class_name: "FriendRequest", foreign_key: "user_id"
+  has_many :sent_requests -> { where confirmed: false}, class_name: "FriendRequest",
+  foreign_key: "user_id"
+  
   has_many :pending_requests, -> { where confirmed: false}, class_name: "FriendRequest",
   foreign_key: "friend_id"
 

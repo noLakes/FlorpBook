@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @users = User.all
     @friends = current_user.friends
     @pending_requests = current_user.pending_requests
-    @sent_requests = current_user.sent_requests { where confirmed: false }
+    @sent_requests = current_user.sent_requests
   end
 
 end
