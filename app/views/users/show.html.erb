@@ -5,6 +5,10 @@
                                                 method: :post %>
 <% end %>
 
+<% if @user == current_user %>
+  <%= link_to  "edit profile", edit_user_registration_path(current_user) %>
+<% end %>
+
 <h3>Posts</h3>
 
 <% @user.posts.each do |p| %>
@@ -40,4 +44,5 @@
   <% end %>
 
    </br></br>
+
 <% end %>
