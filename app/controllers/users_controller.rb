@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def index 
-    @user = User.fidn(params[:id])
+    @user = User.find(params[:id])
     @users = User.all
   end
 
