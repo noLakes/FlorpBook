@@ -16,7 +16,7 @@
     <%= link_to  "accept" %>
     <%= link_to  "decline" %>
   <% end %>
-<% end %>
+<% end %></br></br>
 
 <% unless @sent_requests.empty? %>
   <% @sent_requests.each do |request| %>
@@ -29,7 +29,8 @@
   <% unless friend == current_user %>
     <% if current_user.possible_friend?(friend) %>
       <%= "#{friend.name}" %></br>
-      <%= link_to  "add friend" %></br></br>
+      <%= link_to  "add friend", user_friend_requests_path(friend.id),
+                                            method: :post %></br></br>
     <% end %>
   <% end %>
 <% end %>
