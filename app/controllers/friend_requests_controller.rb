@@ -14,4 +14,12 @@ class FriendRequestsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def accept
+
+  end
+
+  def decline
+
+  end
+
 end
