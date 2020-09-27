@@ -1,0 +1,35 @@
+
+<h2>Friends</h2>
+
+<% unless @friends.empty?%>
+  <% @friends.each do |friend| %>
+    <%= link_to  friend.name, user_path(friend) %></br>
+  <% end %>
+<% end %>
+
+<h2>Pending Requests</h2>
+
+<% unless @pending_requests.empty? %>
+  <% @pending_requests.each do |request| %>
+    <%= "#{request.user.name} wants to be your friend!"%>
+    </br>
+    <%= link_to  "accept" %>
+    <%= link_to  "decline" %>
+  <% end %>
+<% end %>
+
+<% unless @sent_requests.empty? %>
+  <% @sent_requests.each do |request| %>
+    <%= "waiting for #{User.find(request.friend_id).name} to accept"%>
+  <% end %>
+<% end %>
+
+<h2>Other Users</h2>
+<% @users.each do |friend| %>
+  <% unless friend == current_user %>
+    <% if current_user.possible_friend?(friend) %>
+      <%= "#{friend.name}" %></br>
+      <%= link_to  "add friend" %>
+    <% end %>
+  <% end %>
+<% end %>
