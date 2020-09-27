@@ -16,8 +16,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def friends
-    friends_i_sent_inv = FriendRequest.where(user_id: id, confirmed: true).pluck(:id)
-    friends_i_received_inv = FriendRequest.where(friend_id: id, confirmed: true).pluck(:id)
+    friends_i_sent_inv = FriendRequest.where(user_id: id, confirmed: true).pluck(:friend_id)
+    friends_i_received_inv = FriendRequest.where(friend_id: id, confirmed: true).pluck(:user_id)
     ids = friends_i_sent_inv + friends_i_received_inv
     User.where(id: ids)
   end
