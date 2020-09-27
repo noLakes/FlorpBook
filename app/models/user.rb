@@ -28,4 +28,8 @@ class User < ApplicationRecord
     sent_requests.create(friend_id: user.id)
   end
 
+  def possible_friend?(user)
+    !FriendRequest.reacted?(id, user.id)
+  end
+
 end
