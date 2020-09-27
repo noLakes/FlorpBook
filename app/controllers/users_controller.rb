@@ -6,8 +6,9 @@ class UsersController < ApplicationController
   end
 
   def index 
-    @user = User.find(params[:id])
-    @users = User.all
+    @friends = current_user.friends
+    @pending_requests = current_user.pending_requests
+    @sent_requests = current_user.sent_requests { where confirmed: false }
   end
 
 end
