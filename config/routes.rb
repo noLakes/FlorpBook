@@ -2,7 +2,16 @@ Rails.application.routes.draw do
   devise_for :users
   
   resources :users, only: [:show, :index] do
-    resources :friend_requests, only: [:create]
+    resources :friend_requests, only: [:create] do
+      collection do
+        get 'accept_friend'
+        get 'decline_friend'
+      end
+    end
+  end
+
+  resources :friend_requests do
+
   end
   
   resources :posts do
