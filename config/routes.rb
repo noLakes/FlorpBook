@@ -12,8 +12,6 @@ Rails.application.routes.draw do
   resources :comments do
     resources :likes, only: [:create]
   end
-
-  resources :notifications, only: [:index]
   
   root "posts#index"
 end
