@@ -1,35 +1,34 @@
+<h3>Notifications</h3>
+
 <% if @notifications.length.zero?%>
   <em><%= "no notifications at the moment" %></em>
 <% else %>
   <% @notifications.each do |note| %>
     
-    <% if note.type == 'comment' %>
+    <% if note.notice_type == 'comment' %>
       <%= "someone commented on your " %>
       <%= link_to  "post", post_path(notification_source(note, 'comment')) %>
-    <% end %>  
+      </br></br>
+    <% end %>
 
-    <% if note.type == 'like-comment' %>
+    <% if note.notice_type == 'like-comment' %>
       <%= "someone liked your comment on this " %>
       <%= link_to  "post", post_path(notification_source(note, 'like-comment')) %>
+      </br></br>
     <% end %>
 
-    <% if note.type == 'like-post' %>
+    <% if note.notice_type == 'like-post' %>
       <%= "someone liked your " %>
       <%= link_to  "post", post_path(notification_source(note, 'like-post')) %>
+      </br></br>
     <% end %>  
 
-    <% if note.type == 'friend_request' %>
+    <% if note.notice_type == 'friend_request' %>
       <% user = notification_source(note, 'friend_request').user %>
-      <%= "#{user} sent you a friend request!"%>
-    <% end %>  
-
-    </br>
-    #button logic here 
-    <% if note.type == 'friend_request'%>
-    #accept/decline buttons + destroy notification
-    <% else %>
-    #button that destroys notificaiton
+      <%= "#{user.name} sent you a"%>
+      <%= link_to  "friend request!", users_path %>
+      </br></br>
     <% end %>
-    </br>
+
   <% end %>
 <% end %>
