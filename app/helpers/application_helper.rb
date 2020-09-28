@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def new_notification(user, notice_id, notice_type)
     notice = user.notifications.build(notice_id: notice_id,
-    notice_type: notice_type)
+    notice_type: notice_type, sender_id: current_user.id)
     return notice
   end
 

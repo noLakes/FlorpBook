@@ -4,6 +4,8 @@
   <em><%= "no notifications at the moment" %></em>
 <% else %>
   <% @notifications.each do |note| %>
+
+    <% sender = note.sender_id.nil? ? nil : User.find(note.sender_id) %>
     
     <% if note.notice_type == 'comment' %>
       <%= "someone commented on your " %>
