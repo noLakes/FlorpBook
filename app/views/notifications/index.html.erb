@@ -10,18 +10,21 @@
     <% if note.notice_type == 'comment' %>
       <%= "#{sender} commented on your " %>
       <%= link_to  "post", post_path(notification_source(note, 'comment')) %>
+      </br><%= link_to  "dismiss", notification_path(note), method: :delete %>
       </br></br>
     <% end %>
 
     <% if note.notice_type == 'like-comment' %>
       <%= "#{sender} liked your comment on this " %>
       <%= link_to  "post", post_path(notification_source(note, 'like-comment')) %>
+      </br><%= link_to  "dismiss", notification_path(note), method: :delete %>
       </br></br>
     <% end %>
 
     <% if note.notice_type == 'like-post' %>
       <%= "#{sender} liked your " %>
       <%= link_to  "post", post_path(notification_source(note, 'like-post')) %>
+      </br><%= link_to  "dismiss", notification_path(note), method: :delete %>
       </br></br>
     <% end %>  
 
@@ -29,6 +32,7 @@
       <% user = notification_source(note, 'friend_request').user %>
       <%= "#{user.name} sent you a"%>
       <%= link_to  "friend request!", users_path %>
+      </br><%= link_to  "dismiss", notification_path(note), method: :delete %>
       </br></br>
     <% end %>
 
