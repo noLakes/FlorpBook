@@ -5,22 +5,22 @@
 <% else %>
   <% @notifications.each do |note| %>
 
-    <% sender = note.sender_id.nil? ? nil : User.find(note.sender_id) %>
+    <% sender = note.sender_id.nil? ? 'someone' : User.find(note.sender_id).name %>
     
     <% if note.notice_type == 'comment' %>
-      <%= "someone commented on your " %>
+      <%= "#{sender} commented on your " %>
       <%= link_to  "post", post_path(notification_source(note, 'comment')) %>
       </br></br>
     <% end %>
 
     <% if note.notice_type == 'like-comment' %>
-      <%= "someone liked your comment on this " %>
+      <%= "#{sender} liked your comment on this " %>
       <%= link_to  "post", post_path(notification_source(note, 'like-comment')) %>
       </br></br>
     <% end %>
 
     <% if note.notice_type == 'like-post' %>
-      <%= "someone liked your " %>
+      <%= "#{sender} liked your " %>
       <%= link_to  "post", post_path(notification_source(note, 'like-post')) %>
       </br></br>
     <% end %>  
