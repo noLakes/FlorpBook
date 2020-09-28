@@ -2,7 +2,7 @@ class NotificationsController < ApplicationController
   before_action :authenticate_user!
 
   def index 
-    @notifications = Notification.all
+    @notifications = current_user.notifications
   end
 
   def destroy 
