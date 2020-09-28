@@ -15,11 +15,23 @@ class FriendRequestsController < ApplicationController
   end
 
   def accept
-
+    @request = FriendRequest.find(params[:request_id])
+    @friend = User.find(@request.user_id)
+    @request.confirmed = true
+    
+    if @request.save!
+      flash[:notice] = "#{@friend.name} is now your friend!"
+    else
+      flash[:notice] = "error adding friend"
+    end
+    redirect_back(fallback_location: root_path)
   end
 
   def decline
+    @request = FriendRequest.find(params[:request_id])
+    @request.destroy
 
+    redirect_back(fallback_location: root_path)
   end
 
 end
