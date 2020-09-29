@@ -20,6 +20,8 @@ class FriendRequestsController < ApplicationController
     @request.confirmed = true
     
     if @request.save!
+      @notificaiton = new_notification(@friend, @request.id, 'friend_accept')
+      @notificaiton.save
       flash[:notice] = "#{@friend.name} is now your friend!"
     else
       flash[:notice] = "error adding friend"

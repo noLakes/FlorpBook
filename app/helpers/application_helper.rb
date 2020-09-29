@@ -9,7 +9,7 @@ module ApplicationHelper
   #Returns object user is being notified about
   def notification_source(notice, notice_type)
     r = nil
-    r = FriendRequest.find(notice.notice_id) if notice_type == 'friend_request'
+    r = FriendRequest.find(notice.notice_id) if ['friend_request', 'friend_accept'].include?(notice_type)
     r = Comment.find(notice.notice_id) if notice_type == 'comment'
     r = Comment.find(notice.notice_id) if notice_type == 'like-comment'
     r = Post.find(notice.notice_id) if notice_type == 'like-post'

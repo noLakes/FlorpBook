@@ -36,5 +36,13 @@
       </br></br>
     <% end %>
 
+    <% if note.notice_type == 'friend_accept' %>
+      <% user = User.find(notification_source(note, 'friend_accept').friend_id) %>
+      <%= link_to  user.name, users_path %>
+      <%= " accepted your friend request!"%>
+      </br><%= link_to  "dismiss", notification_path(note), method: :delete %>
+      </br></br>
+    <% end %>
+
   <% end %>
 <% end %>
