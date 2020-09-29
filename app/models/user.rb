@@ -14,6 +14,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  validate :avatar_size
 
   def friends
     friends_i_sent_inv = FriendRequest.where(user_id: id, confirmed: true).pluck(:friend_id)
@@ -32,6 +33,12 @@ class User < ApplicationRecord
 
   def possible_friend?(user)
     !FriendRequest.reacted?(id, user.id)
+  end
+
+  private
+
+  def avatar_size
+    errors.add(:avatar, 'should be smaller than 1MB') if avatar.size > 1.megabytes
   end
 
 end
