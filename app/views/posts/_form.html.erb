@@ -1,6 +1,9 @@
 
-<%= form_for(:post, url: posts_path, remote: true) do |f| %>
+<%= form_for(:post, url: posts_path, remote: true, :multipart => true) do |f| %>
   <%= f.label "Your Post:"%>
+  </br>
+  <%= f.label :upload_image %>
+  <%= f.file_field :image, accept: 'image/jpeg,image/png,image/gif' %>
   </br>
   <%= f.text_area :body, size: "50x5" %>
   </br>
