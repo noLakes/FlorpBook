@@ -1,5 +1,11 @@
 <h3><%= "#{@post.author.handle}'s Post'"%></h3>
 
+<% unless @post.image.url.nil? %>
+  </br>
+  <%= image_tag  @post.image.url, class: 'feed_post_image' %>
+  </br>
+<% end %>
+
 <%= @post.body%></br>
 <%= link_to  "like", post_likes_path(@post.id), method: :post %>
 <%= link_to  "comment", new_comment_path(post_id: @post.id) %>
