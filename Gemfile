@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+#for simulating mailer delivery in browser
+gem "letter_opener", :group => :development
 #for safely storing EVN variables and secrets
 gem 'figaro'
 #facebook user authentification and login
