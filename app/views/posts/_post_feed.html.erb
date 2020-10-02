@@ -14,11 +14,11 @@
         <% end %>
         </br>
         <%= p.body %></br>
-        <%= link_to  "like", post_likes_path(p.id), method: :post %>
         <%= link_to  "comment", new_comment_path(post_id: p.id) %>
+        <%= link_to  "like", post_likes_path(p.id), method: :post %>
         <% if !p.like_count.zero? %>
           <%= "+#{p.like_count}"%>
-        <% end %></br>
+        <% end %>
       </div>
 
         <% p.comments.each do |c| %>

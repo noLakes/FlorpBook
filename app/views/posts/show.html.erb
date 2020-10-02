@@ -7,8 +7,8 @@
 <% end %>
 
 <%= @post.body%></br>
-<%= link_to  "like", post_likes_path(@post.id), method: :post %>
 <%= link_to  "comment", new_comment_path(post_id: @post.id) %>
+<%= link_to  "like", post_likes_path(@post.id), method: :post %>
 <% if !@post.like_count.zero? %>
     <%= "+#{@post.like_count}"%>
 <% end %>
