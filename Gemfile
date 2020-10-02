@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+#for safely storing EVN variables and secrets
+gem 'figaro'
 #facebook user authentification and login
 gem 'omniauth-facebook'
 #Handles file uploading and storage
