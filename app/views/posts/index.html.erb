@@ -1,11 +1,14 @@
 <h1>Your Feed</h1>
 
-<% if user_signed_in? %>
+<% if !user_signed_in? %>
+  <%= link_to  "Please log in to see your feed!", user_sign_in_path %>
+<% else %>
   <h3>something on your mind?</h3>
   <%= render "form" %></br></br>
 
-<%= render "post_feed" %>
-
-<% else %>
-  <%= link_to  "Please log in to see your feed!", user_sign_in_path %>
+  <% @posts.each do |post| %>
+    <% if post.author == current_user || current_user.friend_with?(post.author) %>
+      <%= render partial: "post", object: post %>
+    <% end %>
+  <% end %>
 <% end %>
