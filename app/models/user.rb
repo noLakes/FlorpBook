@@ -13,7 +13,7 @@ class User < ApplicationRecord
   foreign_key: "friend_id"
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
   devise :omniauthable, omniauth_providers: %i[facebook]
 
   validate :avatar_size
@@ -57,10 +57,18 @@ class User < ApplicationRecord
     end
   end
 
+  def after_confirmation
+    welcome_email
+  end
+
   private
 
   def avatar_size
     errors.add(:avatar, 'should be smaller than 1MB') if avatar.size > 1.megabytes
+  end
+
+  def welcome_email
+    UserMailer.welcome_email(self).deliver
   end
 
 end
