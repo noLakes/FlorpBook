@@ -11,6 +11,8 @@ gem 'figaro'
 gem 'omniauth-facebook'
 #Handles file uploading and storage
 gem 'carrierwave', '~> 2.1'
+gem 'carrierwave-aws'
+gem 'aws-sdk-rails'
 #Manipulates image files
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 #Use Devise for user authentificaiton and session management
