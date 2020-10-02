@@ -1,7 +1,5 @@
 
 <%= form_for(:post, url: posts_path, remote: true, :multipart => true) do |f| %>
-  <%= f.label "Your Post:"%>
-  </br>
   <%= f.label :upload_image %>
   <%= f.file_field :image, accept: 'image/jpeg,image/png,image/gif' %>
   </br>
