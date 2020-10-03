@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+gem 'fog-aws'
 #for simulating mailer delivery in browser
 gem "letter_opener", :group => :development
 #for safely storing EVN variables and secrets
@@ -11,8 +12,6 @@ gem 'figaro'
 gem 'omniauth-facebook'
 #Handles file uploading and storage
 gem 'carrierwave', '~> 2.1'
-gem 'carrierwave-aws'
-gem 'aws-sdk-rails'
 #Manipulates image files
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 #Use Devise for user authentificaiton and session management
