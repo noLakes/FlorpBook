@@ -2,7 +2,8 @@ class Post < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   belongs_to :author, class_name: "User"
-  has_many :comments, class_name: "Comment", foreign_key: "post_id"
+  has_many :comments, class_name: "Comment", foreign_key: "post_id",
+  dependent: :destroy
   has_many :likes, dependent: :destroy
 
   validate :image_size
