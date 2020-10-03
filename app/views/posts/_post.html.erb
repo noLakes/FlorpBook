@@ -8,7 +8,7 @@
         <% end %>
         <% unless post.image.url.nil? %>
           </br>
-          <%= image_tag  post.image.url, class: 'feed_post_image' %>
+          <%= image_tag  post.image.feed.url, class: 'feed_post_image' %>
         <% end %>
         </br>
         <%= post.body %></br>
