@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+#for active storage on heroku
+gem "aws-sdk-s3", require: false
+
 gem 'fog-aws'
 #for simulating mailer delivery in browser
 gem "letter_opener", :group => :development
