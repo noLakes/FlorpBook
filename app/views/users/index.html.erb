@@ -3,7 +3,7 @@
 
 <% unless @friends.empty?%>
   <% @friends.each do |friend| %>
-    <%= link_to  friend.name, user_path(friend) %></br>
+    <%= link_to friend.name, user_path(friend) %></br>
   <% end %>
 <% end %>
 
@@ -11,7 +11,8 @@
 
 <% unless @pending_requests.empty? %>
   <% @pending_requests.each do |request| %>
-    <%= "#{request.user.name} wants to be your friend!"%>
+    <%= link_to request.user.name, user_path(request.user) %>
+    <%= " wants to be your friend!"%>
     </br>
     <%= link_to  "accept", accept_user_friend_requests_path(user_id: current_user.id,
                                                               request_id: request.id) %>
@@ -22,7 +23,10 @@
 
 <% unless @sent_requests.empty? %>
   <% @sent_requests.each do |request| %>
-    <%= "waiting for #{User.find(request.friend_id).name} to accept"%>
+    <%= "waiting for "%>
+    <% user = User.find(request.friend_id) %>
+    <%= link_to  user.name, user_path(user) %>
+    <%= " to accept"%>
   <% end %>
 <% end %>
 
@@ -30,7 +34,7 @@
 <% @users.each do |friend| %>
   <% unless friend == current_user %>
     <% if current_user.possible_friend?(friend) %>
-      <%= "#{friend.name}" %></br>
+      <%= link_to friend.name, user_path(friend) %></br>
       <%= link_to  "add friend", user_friend_requests_path(friend.id),
                                             method: :post %></br></br>
     <% end %>
