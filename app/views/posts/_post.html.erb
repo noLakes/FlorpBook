@@ -21,7 +21,7 @@
 
         <% post.comments.each do |c| %>
           <div class="comment">
-            <%= image_tag  post.author.avatar.feed.url, class: 'comment_profile_pic' %>  
+            <%= image_tag  c.author.avatar.feed.url, class: 'comment_profile_pic' %>  
             <% if c.author.handle == "" %>
               <%= link_to  c.author.name, user_path(c.author.id)%>
             <% else %>
