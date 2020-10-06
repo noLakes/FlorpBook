@@ -6,6 +6,13 @@
   <h3>something on your mind?</h3>
   <%= render "form" %></br></br>
 
+  <% if current_user.friends.length.zero? %>
+    <%= "Add some " %>
+    <%= link_to  "friends", users_path %>
+    <%= " to fill out your feed!" %>
+    </br></br>
+  <% end %>
+
   <% @posts.each do |post| %>
     <% if post.author == current_user || current_user.friend_with?(post.author) %>
       <%= render partial: "post", object: post %>
