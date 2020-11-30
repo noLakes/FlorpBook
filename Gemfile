@@ -9,6 +9,9 @@ gem 'sendgrid-ruby'
 #for active storage on heroku
 gem "aws-sdk-s3", require: false
 
+#for styling
+gem 'bulma-rails', '~> 0.9.1'
+
 gem 'fog-aws'
 #for simulating mailer delivery in browser
 gem "letter_opener", :group => :development

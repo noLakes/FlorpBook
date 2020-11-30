@@ -66,6 +66,8 @@ GEM
     bootsnap (1.4.8)
       msgpack (~> 1.0)
     builder (3.2.4)
+    bulma-rails (0.9.1)
+      sassc (~> 2.0)
     byebug (11.1.3)
     carrierwave (2.1.0)
       activemodel (>= 5.0.0)
@@ -225,6 +227,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     sendgrid-ruby (6.3.5)
       ruby_http_client (~> 3.4)
     spring (2.1.1)
@@ -265,6 +269,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk-s3
   bootsnap (>= 1.1.0)
+  bulma-rails (~> 0.9.1)
   byebug
   carrierwave (~> 2.1)
   coffee-rails (~> 4.2)
