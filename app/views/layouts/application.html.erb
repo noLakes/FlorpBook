@@ -14,26 +14,32 @@
 </head>
 
 <body>
+  <section class='section'>
 
-  <% if flash[:notice] %>
-  <div class="flash_notifcation">
-    <p class="good"><%= flash[:notice] %></p>
-  </div>
-  <% end %>
-
-  <% if flash[:fail] %>
-  <div class="flash_notification">
-    <p class="bad"><%= flash[:fail] %></p>
-  </div>
-  <% end %>
-
-  <nav class='navbar is-fixed-top'>
-    <div class='navbar-brand'>
-      <div class='navbar-item'>florpbook</div>
+    <% if flash[:notice] %>
+    <div class="flash_notifcation">
+      <p class="good"><%= flash[:notice] %></p>
     </div>
-    <div class='navbar-menu'>
-      <div class='navbar-start'>
-        <% if user_signed_in? %>
+    <% end %>
+
+    <% if flash[:fail] %>
+    <div class="flash_notification">
+      <p class="bad"><%= flash[:fail] %></p>
+    </div>
+    <% end %>
+
+    <nav class='navbar is-fixed-top is-link'>
+      <div class='navbar-brand'>
+        <div class='navbar-item'>florpbook</div>
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class='navbar-menu' id='navMenu'>
+        <div class='navbar-start'>
+          <% if user_signed_in? %>
           <% n_count = current_user.notifications.count %>
           <% n_display = n_count.zero? ? nil : " +#{n_count}" %>
           <%= link_to  "Home", posts_path, class: "navbar-item" %>
@@ -41,19 +47,21 @@
           <%= link_to  current_user.name , user_path(current_user), class: "navbar-item" %>
           <%= link_to 'Friends', users_path, class: "navbar-item" %>
           <%= link_to  "Log Out", destroy_user_session_path, :method => :delete, class: "navbar-item" %>
-        <% else %>
+          <% else %>
           <%= link_to  "Log In", new_user_session_path, class: "navbar-item" %>
           <%= link_to  "Sign Up", new_user_registration_path, class: "navbar-item" %>
-        <% end %>
+          <% end %>
+        </div>
+
+        <div class='navbar-end'>
+
+        </div>
       </div>
+    </nav>
 
-      <div class='navbar-end'>
+    <%= yield %>
 
-      </div>
-    </div>
-  </nav>
-
-  <%= yield %>
+  </section>
 </body>
 <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
 
