@@ -1,72 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    
-    <title>Florpbook</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
-  <body>
+  <title>Florpbook</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <% if flash[:notice] %>
-      <div class="flash_notifcation">
-        <p class="good"><%= flash[:notice] %></p>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+
+  <% if flash[:notice] %>
+  <div class="flash_notifcation">
+    <p class="good"><%= flash[:notice] %></p>
+  </div>
+  <% end %>
+
+  <% if flash[:fail] %>
+  <div class="flash_notification">
+    <p class="bad"><%= flash[:fail] %></p>
+  </div>
+  <% end %>
+
+  <nav class='navbar is-fixed-top'>
+    <div class='navbar-brand'>
+      <div class='navbar-item'>florpbook</div>
+    </div>
+    <div class='navbar-menu'>
+      <div class='navbar-start'>
+        <% if user_signed_in? %>
+          <% n_count = current_user.notifications.count %>
+          <% n_display = n_count.zero? ? nil : " +#{n_count}" %>
+          <%= link_to  "Home", posts_path, class: "navbar-item" %>
+          <%= link_to  "Notifications#{n_display}", notifications_path, class: "navbar-item" %>
+          <%= link_to  current_user.name , user_path(current_user), class: "navbar-item" %>
+          <%= link_to 'Friends', users_path, class: "navbar-item" %>
+          <%= link_to  "Log Out", destroy_user_session_path, :method => :delete, class: "navbar-item" %>
+        <% else %>
+          <%= link_to  "Log In", new_user_session_path, class: "navbar-item" %>
+          <%= link_to  "Sign Up", new_user_registration_path, class: "navbar-item" %>
+        <% end %>
       </div>
-    <% end %>
 
-    <% if flash[:fail] %>
-      <div class="flash_notification">
-        <p class="bad"><%= flash[:fail] %></p>
+      <div class='navbar-end'>
+
       </div>
-    <% end %>
+    </div>
+  </nav>
 
-    <nav class='navbar is-fixed-top'>
-      <div class='navbar-brand'>
-        <div class='navbar-item'>florpbook</div>
-      </div>
-      <div class='navbar-menu'>
-        <div class='navbar-start'>
+  <%= yield %>
+</body>
+<script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
 
-          <a class='navbar-item'>
-            Home
-          </a>
-          <a class='navbar-item'>
-            Notifications
-          </a>
-        </div>
-
-        <div class='navbar-end'>
-        
-        </div>
-      </div>
-    </nav>
-
-    <table>
-      <% if user_signed_in? %>
-        <% n_count = current_user.notifications.count %>
-        <% n_display = n_count.zero? ? nil : " +#{n_count}" %>
-        <tr>
-          <td><%= link_to  "Home", posts_path %></td>
-          <td><%= link_to  "Notifications#{n_display}", notifications_path %></td>
-          <td><%= link_to  current_user.name , user_path(current_user) %></td>
-          <td><%= link_to 'Friends', users_path %></td>
-          <td><%= link_to  "Log Out", destroy_user_session_path, :method => :delete %></td>
-        </tr>
-      <% else %>
-        <tr>
-          <td><%= link_to  "Log In", new_user_session_path %></td>
-          <td><%= link_to  "Sign Up", new_user_registration_path %></td>
-        </tr>
-      <% end %>
-    </table>
-
-    <%= yield %>
-  </body>
-  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
 </html>
