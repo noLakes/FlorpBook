@@ -1,6 +1,49 @@
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <%= image_tag post.author.avatar.feed.url, class: 'feed_profile_pic' %>
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <% if post.author.handle == "" %>
+          <strong><%= link_to  post.author.name,  user_path(post.author.id)%></strong>
+        <% else %>
+          <strong><%= link_to  post.author.handle, user_path(post.author.id) %></strong>
+        <% end %>
+        <small>time_ago</small>
+        <br>
+        <% unless post.image.url.nil? %>
+          <%= image_tag  post.image.feed.url, class: 'feed_post_image' %>
+          <% if !post.body.nil?%>
+            </br>
+          <% end %>
+        <% end %>
+        <%= post.body %>
+      </p>
+    </div>
+    <nav class="level is-mobile">
+      <div class="level-left">
+        <%= link_to(new_comment_path(post_id: post.id), class:'level-item') do %>
+          <span class="icon is-small"><i class="fas fa-comment"></i></span>
+        <% end %>
+        <%= link_to(post_likes_path(post.id), method: :post, class:'level-item') do %>
+          <span class="icon is-small"><i class="fas fa-heart"></i></span>
+        <% end %>
+        <% if !post.like_count.zero? %>
+          <div class='level-item'>
+            <%= "+#{post.like_count}"%>
+          </div>
+        <% end %>
+      </div>
+    </nav>
+  </div>
+</article>
 
+      <% if false %>
       <div class="post">
-        <%= image_tag  post.author.avatar.feed.url, class: 'feed_profile_pic' %>  
+        <%= image_tag post.author.avatar.feed.url, class: 'feed_profile_pic' %>  
         <% if post.author.handle == "" %>
           <%= link_to  post.author.name,  user_path(post.author.id)%>
         <% else %>
@@ -36,3 +79,6 @@
           </div>
         <% end %>
     </br></br>
+
+    <% end %>
+
