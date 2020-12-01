@@ -30,7 +30,11 @@
 
     <%= render "layouts/navbar" %>
 
-    <%= yield %>
+    <div class="columns" id='main-container'>
+      <div class="column" id='main-column'>
+        <%= yield %>
+      </div>
+    </div>
 
   </section>
 </body>
