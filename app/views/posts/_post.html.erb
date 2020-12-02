@@ -26,6 +26,9 @@
         <%= link_to(new_comment_path(post_id: post.id)) do %>
           <span class="icon is-small"><i class="fas fa-comment"></i></span>
         <% end %>
+        <% if !post.comment_count.zero? %>
+          <%= post.comment_count %>
+        <% end %>
         <%= link_to(post_likes_path(post.id), method: :post) do %>
           <span class="icon is-small"><i class="fas fa-heart"></i></span>
         <% end %>
