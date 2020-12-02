@@ -21,23 +21,20 @@
           <% end %>
         <% end %>
         <%= post.body %>
-      </p>
-    </div>
-    <nav class="level is-mobile">
-      <div class="level-left">
-        <%= link_to(new_comment_path(post_id: post.id), class:'level-item') do %>
+        </br>
+        <small>
+        <%= link_to(new_comment_path(post_id: post.id)) do %>
           <span class="icon is-small"><i class="fas fa-comment"></i></span>
         <% end %>
-        <%= link_to(post_likes_path(post.id), method: :post, class:'level-item') do %>
+        <%= link_to(post_likes_path(post.id), method: :post) do %>
           <span class="icon is-small"><i class="fas fa-heart"></i></span>
         <% end %>
         <% if !post.like_count.zero? %>
-          <div class='level-item'>
-            <%= "+#{post.like_count}"%>
-          </div>
+          <%= post.like_count %>
         <% end %>
-      </div>
-    </nav>
+        </small>
+      </p>
+    </div>
   </div>
 </article>
 
