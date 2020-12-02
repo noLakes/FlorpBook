@@ -12,6 +12,10 @@ class Post < ApplicationRecord
     self.likes.count
   end
 
+  def comment_count
+    self.comments.count
+  end
+
   private
 
   def image_size
