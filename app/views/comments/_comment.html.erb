@@ -1,0 +1,31 @@
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <%= image_tag comment.author.avatar.feed.url, class: 'feed_profile_pic' %>
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <% if comment.author.handle == "" %>
+          <strong><%= link_to  comment.author.name,  user_path(comment.author.id)%></strong>
+        <% else %>
+          <strong><%= link_to  comment.author.handle, user_path(comment.author.id) %></strong>
+        <% end %>
+        <small>time_ago</small>
+        <br>
+        <%= comment.body %>
+        </br>
+        <small>
+        <%= link_to(comment_likes_path(comment.id), method: :comment) do %>
+          <span class="icon is-small"><i class="fas fa-heart"></i></span>
+        <% end %>
+        <% if !comment.like_count.zero? %>
+          <%= comment.like_count %>
+        <% end %>
+        </small>
+      </p>
+    </div>
+  </div>
+</article>
+
