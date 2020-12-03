@@ -13,7 +13,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body>
+<body class='has-background-link-light'>
   <section class='section pt-2'>
 
     <% if flash[:notice] %>
@@ -31,6 +31,13 @@
     <% if false %>
       <%= render "layouts/navbar" %>
     <% end %>
+
+    <div class='columns' id='header-container'>
+      <div class='column is-8 is-offset-2 is-flex is-flex-direction-row is-align-content-center'>
+        <h1 class='title has-text-link-dark'>florpbook</h1>
+        <span class='icon is-size-4 ml-2 has-text-danger'><i class='fas fa-meteor'></i></span>
+      </div>
+    </div>
 
     <div class="columns" id='main-container'>
       <div class="column is-2 is-offset-2" id='menu-container'>
