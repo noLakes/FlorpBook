@@ -28,13 +28,18 @@
     </div>
     <% end %>
 
-    <%= render "layouts/navbar" %>
-
     <div class="columns" id='main-container'>
-      <div class="column" id='main-column'>
+      <div class="column is-3" id='menu-container'>
+        Menu here
+      </div>
+      <div class="column is-6" id='feed-container'>
         <%= yield %>
       </div>
     </div>
+
+    <% if false %>
+      <%= render "layouts/navbar" %>
+    <% end %>
 
   </section>
 </body>
