@@ -4,26 +4,47 @@
       <% n_count = current_user.notifications.count %>
       <% n_display = n_count.zero? ? nil : " +#{n_count}" %>
       <li>
-        <%= link_to  "Home", posts_path %>
+        <%= link_to(posts_path) do %>
+          <span class='icon'><i class='fas fa-home'></i></span>
+          Home
+        <% end %>
       </li>
       <li>
-        <%= link_to  "Notifications#{n_display}", notifications_path %>
+        <%= link_to(notifications_path) do %>
+          <span class='icon'><i class='fas fa-bell'></i></span>
+          <%= "Notifications#{n_display}" %>
+        <% end %>
       </li>
       <li>
-        <%= link_to  "Profile" , user_path(current_user) %>
+        <%= link_to(user_path(current_user)) do %>
+          <span class='icon'><i class='fas fa-id-badge'></i></span>
+          Profile
+        <% end %>
       </li>
       <li>
-        <%= link_to 'Friends', users_path %>
+        <%= link_to(users_path) do %>
+          <span class='icon'><i class='fas fa-user-friends'></i></span>
+          Friends
+        <% end %>
       </li>
       <li>
-        <%= link_to  "Log Out", destroy_user_session_path, :method => :delete %>
+        <%= link_to(destroy_user_session_path, :method => :delete) do %>
+          <span class='icon'><i class='fas fa-sign-out-alt'></i></span>
+          Log Out
+        <% end %>
       </li>
     <% else %>
     <li>
-      <%= link_to  "Log In", new_user_session_path %>
+      <%= link_to(new_user_session_path) do %>
+        <span class='icon'><i class='fas fa-sign-in-alt'></i></span>
+        Log In
+      <% end %>
     </li>
     <li>
-      <%= link_to  "Sign Up", new_user_registration_path %>
+      <%= link_to(new_user_registration_path) do %>
+        <span class='icon'><i class='fas fa-user-plus'></i></span>
+        Sign Up
+      <% end %>
     </li>
     <% end %>
   </ul>
