@@ -1,2 +1,6 @@
 @import "bulma/bulma";
-@import '_layout'
+@import '_layout';
+
+#nav-menu {
+  position: fixed;
+}
