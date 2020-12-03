@@ -1,9 +1,8 @@
-<h1>Your Feed</h1>
+<h4 class='title is-4 has-text-link'>Your Feed</h4>
 
 <% if !user_signed_in? %>
   <%= link_to  "Please log in to see your feed!", user_sign_in_path %>
 <% else %>
-  <h3>something on your mind?</h3>
   <%= render "form" %></br></br>
 
   <% if current_user.friends.length.zero? %>
