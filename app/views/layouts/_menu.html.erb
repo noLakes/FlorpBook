@@ -1,0 +1,33 @@
+<aside class="menu">
+  <p class="menu-label">
+    Menu
+  </p>
+  <ul class="menu-list">
+    <% if user_signed_in? %>
+      <% n_count = current_user.notifications.count %>
+      <% n_display = n_count.zero? ? nil : " +#{n_count}" %>
+      <li>
+        <%= link_to  "Home", posts_path %>
+      </li>
+      <li>
+        <%= link_to  "Notifications#{n_display}", notifications_path %>
+      </li>
+      <li>
+        <%= link_to  "Profile" , user_path(current_user) %>
+      </li>
+      <li>
+        <%= link_to 'Friends', users_path %>
+      </li>
+      <li>
+        <%= link_to  "Log Out", destroy_user_session_path, :method => :delete %>
+      </li>
+    <% else %>
+    <li>
+      <%= link_to  "Log In", new_user_session_path %>
+    </li>
+    <li>
+      <%= link_to  "Sign Up", new_user_registration_path %>
+    </li>
+    <% end %>
+  </ul>
+</aside>
