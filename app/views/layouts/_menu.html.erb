@@ -5,44 +5,44 @@
       <% n_display = n_count.zero? ? nil : " +#{n_count}" %>
       <li>
         <%= link_to(posts_path) do %>
-          <span class='icon is-size-3-touch has-text-info'><i class='fas fa-home'></i></span>
+          <span class='icon is-size-3-touch has-text-link'><i class='fas fa-home'></i></span>
           <span class='is-hidden-touch'>Home</span>
         <% end %>
       </li>
       <li>
         <%= link_to(notifications_path) do %>
-          <span class='icon is-size-3-touch has-text-info'><i class='fas fa-bell'></i></span>
+          <span class='icon is-size-3-touch has-text-link'><i class='fas fa-bell'></i></span>
           <span class='is-hidden-touch'><%= "Notifications#{n_display}" %></span>
         <% end %>
       </li>
       <li>
         <%= link_to(user_path(current_user)) do %>
-          <span class='icon is-size-3-touch has-text-info'><i class='fas fa-id-badge'></i></span>
+          <span class='icon is-size-3-touch has-text-link'><i class='fas fa-id-badge'></i></span>
           <span class='is-hidden-touch'>Profile</span>
         <% end %>
       </li>
       <li>
         <%= link_to(users_path) do %>
-          <span class='icon is-size-3-touch has-text-info'><i class='fas fa-user-friends'></i></span>
+          <span class='icon is-size-3-touch has-text-link'><i class='fas fa-user-friends'></i></span>
           <span class='is-hidden-touch'>Friends</span>
         <% end %>
       </li>
       <li>
         <%= link_to(destroy_user_session_path, :method => :delete) do %>
-          <span class='icon is-size-3-touch has-text-info'><i class='fas fa-sign-out-alt'></i></span>
+          <span class='icon is-size-3-touch has-text-link'><i class='fas fa-sign-out-alt'></i></span>
           <span class='is-hidden-touch'>Log Out</span>
         <% end %>
       </li>
     <% else %>
     <li>
       <%= link_to(new_user_session_path) do %>
-        <span class='icon is-size-3-touch has-text-info'><i class='fas fa-sign-in-alt'></i></span>
+        <span class='icon is-size-3-touch has-text-link'><i class='fas fa-sign-in-alt'></i></span>
         <span class='is-hidden-touch'>Log In</span>
       <% end %>
     </li>
     <li>
       <%= link_to(new_user_registration_path) do %>
-        <span class='icon is-size-3-touch has-text-info'><i class='fas fa-user-plus'></i></span>
+        <span class='icon is-size-3-touch has-text-link'><i class='fas fa-user-plus'></i></span>
         <span class='is-hidden-touch'>Sign Up</span>
       <% end %>
     </li>
