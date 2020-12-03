@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <section class='section'>
+  <section class='section pt-2'>
 
     <% if flash[:notice] %>
     <div class="flash_notifcation">
@@ -28,6 +28,10 @@
     </div>
     <% end %>
 
+    <% if false %>
+      <%= render "layouts/navbar" %>
+    <% end %>
+
     <div class="columns" id='main-container'>
       <div class="column is-2 is-offset-2" id='menu-container'>
         <%= render "layouts/menu" %>
@@ -36,10 +40,6 @@
         <%= yield %>
       </div>
     </div>
-
-    <% if false %>
-      <%= render "layouts/navbar" %>
-    <% end %>
 
   </section>
 </body>
