@@ -1,18 +1,27 @@
 <%= form_for(:post, url: posts_path, remote: true, :multipart => true) do |f| %>
-<%= f.text_area :body, class: "textarea is-info-light", placeholder: "What's on your mind?" %>
-</br>
-<%= f.submit name: nil, class: "button" %>
-<div class="file is-small">
-  <label class="file-label">
-    <%= f.file_field :image, class: "file-input", accept: 'image/jpeg,image/png,image/gif' %>
-    <span class="file-cta">
-      <span class="file-icon">
-        <i class="fas fa-upload"></i>
-      </span>
-      <span class="file-label">
-        Choose a file…
-      </span>
-    </span>
-  </label>
+<div class='field'>
+  <div class='control'>
+    <%= f.text_area :body, class: "textarea is-info-light", placeholder: "What's on your mind?" %>
+  </div>
+</div>
+<div class='field is-grouped'>
+  <div class='control'>
+    <%= f.submit "Post", name: nil, class: "button is-success is-small px-6" %>
+  </div>
+  <div class='control'>
+    <div class="file is-info is-light is-small">
+      <label class="file-label">
+        <%= f.file_field :image, class: "file-input", accept: 'image/jpeg,image/png,image/gif' %>
+        <span class="file-cta px-3">
+          <span class="file-icon">
+            <i class="fas fa-upload"></i>
+          </span>
+          <span class="file-label">
+            Pics?
+          </span>
+        </span>
+      </label>
+    </div>
+  </div>
 </div>
 <% end %>
