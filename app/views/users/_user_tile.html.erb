@@ -1,0 +1,13 @@
+<div class='tile is-child box is-primary'>
+  <p class="image is-48x48">
+    <%= image_tag user.avatar.url, class: "is-rounded" %>
+  </p>
+  <p class='title'>
+    <%= user.name %>
+  </p>
+  <% unless user.handle.nil? %>
+    <p class='subtitle'>
+      <%= "@#{user.handle}" %>
+    </p>
+  <% end %>
+</div>

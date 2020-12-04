@@ -2,9 +2,13 @@
 <h2>Friends</h2>
 
 <% unless @friends.empty?%>
-  <% @friends.each do |friend| %>
-    <%= link_to friend.name, user_path(friend) %></br>
-  <% end %>
+  <div class="tile is-ancestor">
+    <% @friends.each do |friend| %>
+      <div class='tile is-parent is-3'>
+        <%= render partial: "user_tile", object: friend, as: 'user' %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 
 <h2>Pending Requests</h2>
