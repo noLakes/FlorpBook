@@ -1,9 +1,15 @@
-
 <%= form_for(:comment, url: comments_path, remote: true) do |f| %>
-  <%= f.hidden_field :post_id, :value => params[:post_id] %>
-  <%= f.label "Your Comment:"%>
-  </br>
-  <%= f.text_area :body, size: "50x5" %>
-  </br>
-  <%= f.submit :create, name: nil%>
+<%= f.hidden_field :post_id, :value => params[:post_id] %>
+
+<div class='field'>
+  <%= f.label "Your Comment:", class: 'label'%>
+  <div class='control'>
+    <%= f.text_area :body, class: 'textarea is-info-light', placeholder: "What do you want to say?" %>
+  </div>
+</div>
+<div class='field'>
+  <div class='control'>
+    <%= f.submit "Post", name: nil, class: "button is-success is-small px-6" %>
+  </div>
+</div>
 <% end %>
