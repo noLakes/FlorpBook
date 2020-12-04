@@ -15,10 +15,9 @@
         <small>time_ago</small>
         <br>
         <% unless post.image.url.nil? %>
-          <%= image_tag  post.image.feed.url, class: 'feed_post_image' %>
-          <% if !post.body.nil?%>
-            </br>
-          <% end %>
+          <figure class="image my-1 mx-0">
+            <%= image_tag post.image.url, class: 'feed_post_image' %>
+          </figure>
         <% end %>
         <%= post.body %>
         </br>
