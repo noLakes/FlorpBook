@@ -4,7 +4,7 @@
     <% n_count = current_user.notifications.count %>
     <% n_display = n_count.zero? ? nil : " +#{n_count}" %>
     <li>
-      <a class='is-inactive'>
+      <a class='pt-0'>
       <span class='icon is-size-3-touch has-text-danger'><i class='fas fa-meteor'></i></span>
       <span class='title is-5 has-text-link-dark is-hidden-touch'>florpbook</span>
       </a>
