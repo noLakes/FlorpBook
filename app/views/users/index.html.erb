@@ -1,46 +1,56 @@
 <h4 class='title is-4 has-text-link'>Friends</h4>
 
 <% unless @friends.empty?%>
-    <div class="columns is-multiline">
-      <% @friends.each do |friend| %>
-        <div class='column is-4'>
-          <%= render partial: "user_col", object: friend, as: 'user' %>
-        </div>
-      <% end %>
-    </div>
+<div class="columns is-multiline">
+  <% @friends.each do |friend| %>
+  <div class='column is-3'>
+    <%= render partial: "user_col", object: friend, as: 'user' %>
+  </div>
+  <% end %>
+</div>
 <% end %>
 
 <h4 class='title is-4 has-text-link'>Pending</h4>
 
 <% unless @pending_requests.empty? %>
-  <% @pending_requests.each do |request| %>
-    <%= link_to request.user.name, user_path(request.user) %>
-    <%= " wants to be your friend!"%>
-    </br>
-    <%= link_to  "accept", accept_user_friend_requests_path(user_id: current_user.id,
-                                                              request_id: request.id) %>
-    <%= link_to  "decline", decline_user_friend_requests_path(user_id: current_user.id,
-                                                              request_id: request.id) %>
+<div class="columns is-multiline">
+  <% @pending_requests.each do |req| %>
+  <% user = req.user %>
+  <div class='column is-3'>
+    <%= render partial: "user_col", object: user, as: 'user' %>
+    <%= link_to(accept_user_friend_requests_path(user_id: user.id, request_id: req.id), class:'button is-rounded is-small is-primary is-light') do %>
+      <span class="icon">
+        <i class="fa fa-check is-small"></i>
+      </span>
+    <% end %>
+
+    <%= link_to(decline_user_friend_requests_path(user_id: user.id, request_id: req.id), class:'button is-rounded is-small is-warning is-light') do %>
+      <span class="icon">
+        <i class="fa fa-times is-small"></i>
+      </span>
+    <% end %>
+  </div>
   <% end %>
-<% end %></br></br>
+</div>
+<% end %>
 
 <% unless @sent_requests.empty? %>
-  <% @sent_requests.each do |request| %>
-    <%= "waiting for "%>
-    <% user = User.find(request.friend_id) %>
-    <%= link_to  user.name, user_path(user) %>
-    <%= " to accept"%>
-  <% end %>
+<% @sent_requests.each do |request| %>
+<%= "waiting for "%>
+<% user = User.find(request.friend_id) %>
+<%= link_to  user.name, user_path(user) %>
+<%= " to accept"%>
+<% end %>
 <% end %>
 
 <h4 class='title is-4 has-text-link'>Other Users</h4>
 
 <% @users.each do |friend| %>
-  <% unless friend == current_user %>
-    <% if current_user.possible_friend?(friend) %>
-      <%= link_to friend.name, user_path(friend) %></br>
-      <%= link_to  "add friend", user_friend_requests_path(friend.id),
+<% unless friend == current_user %>
+<% if current_user.possible_friend?(friend) %>
+<%= link_to friend.name, user_path(friend) %></br>
+<%= link_to  "add friend", user_friend_requests_path(friend.id),
                                             method: :post %></br></br>
-    <% end %>
-  <% end %>
+<% end %>
+<% end %>
 <% end %>
