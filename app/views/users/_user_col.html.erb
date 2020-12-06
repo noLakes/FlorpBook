@@ -1,0 +1,19 @@
+<%= link_to(user, class: "box has-background-primary-light") do %>
+  <article class="media">
+    <figure class="media-left">
+      <p class="image is-48x48">
+        <%= image_tag user.avatar.url, class: 'is-rounded'%>
+      </p>
+    </figure>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong><%= user.name %></strong>
+          <% unless user.handle.nil? %>
+          </br><small><%= "@#{user.handle}"%></small>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </article>
+<% end %>

@@ -12,9 +12,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
-
 <body class='has-background-link-light'>
-  <section class='section pt-2'>
 
     <% if flash[:notice] %>
     <div class="flash_notifcation">
@@ -41,16 +39,23 @@
     </div>
     <% end %>
 
-    <div class="columns" id='main-container'>
-      <div class="column is-2 is-offset-2" id='menu-container'>
-        <%= render "layouts/menu" %>
-      </div>
-      <div class="column is-6" id='feed-container'>
-        <%= yield %>
+  <!-- main -->
+  <section class='section pt-2'>
+    <div class='container'>
+      <div class="columns is-mobile" id='main-container'>
+        <div class="column is-2" id='menu-container'>
+          <%= render "layouts/menu" %>
+        </div>
+        <div class="column is-10-mobile is-8-desktop" id='feed-container'>
+          <%= yield %>
+        </div>
       </div>
     </div>
-
   </section>
+  <!-- /main -->
+  
+  
+
 </body>
 <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
 
