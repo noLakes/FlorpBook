@@ -1,18 +1,52 @@
-<h1><%= "#{@user.name}" %></h1>
+<article class="media box has-background-primary-light">
+  <figure class="media-left">
+    <p class="image is-96x96">
+      <%= image_tag  @user.avatar.url, class: 'is-rounded' %>
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong class='title is-1'><%= @user.name %></strong>
+        <br>
+        <small><%= "@#{@user.handle}" %></small>
+      </p>
+    </div>
+  </div>
+  <div class="media-right">
+  </div>
+</article>
 
-<%= image_tag  @user.avatar.icon.url, class: 'profile_pic' %></br></br>
+<nav class="level is-mobile">
+  <div class="level-left">
 
-<% unless current_user == @user || FriendRequest.reacted?(current_user.id, @user.id) %>
-  <%= link_to  "Add Friend", user_friend_requests_path(@user.id),
-                                                method: :post %>
-<% end %>
+    <% if @user == current_user %>
+      <%= link_to(users_path, class: 'button level-item is-rounded is-link') do %>
+        <span class="icon">
+           <i class="fas fa-user-friends"></i>
+        </span>
+        <span>friends</span>
+      <% end %>
+      <%= link_to(edit_user_registration_path(current_user), class: 'button level-item is-rounded') do %>
+        <span class="icon">
+           <i class="fas fa-cog"></i>
+        </span>
+        <span>edit profile</span>
+      <% end %>
+    <% else %>
+      <% if !FriendRequest.reacted?(current_user.id, @user.id) %>
+        <%= link_to(user_friend_requests_path(@user.id), method: :post, class: 'button level-item is-rounded is-success') do %>
+          <span class="icon">
+           <i class="fas fa-plus"></i>
+          </span>
+          <span>add friend</span>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</nav>
 
-<% if @user == current_user %>
-  <%= link_to  "friends", users_path %>
-  <%= link_to  "edit profile", edit_user_registration_path(current_user) %>
-<% end %>
-
-<h3>Posts</h3>
+<h4 class='title is-4 has-text-link'>Posts</h4>
 
 <% posts = @user.posts.all.order("created_at DESC") %>
 <%= render partial: "posts/post", collection: posts %>
