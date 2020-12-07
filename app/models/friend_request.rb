@@ -21,4 +21,8 @@ class FriendRequest < ApplicationRecord
     end
   end
 
+  def recipient
+    User.find(self.friend_id)
+  end
+
 end

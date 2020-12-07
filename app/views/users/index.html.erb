@@ -3,27 +3,26 @@
 <% unless @friends.empty?%>
 <div class="columns is-multiline">
   <% @friends.each do |friend| %>
-  <div class='column is-3'>
+  <div class='column is-3-widescreen is-4-desktop is-6-tablet is-12-mobile'>
     <%= render partial: "user_col", object: friend, as: 'user' %>
   </div>
   <% end %>
 </div>
 <% end %>
 
-<h4 class='title is-4 has-text-link'>Pending</h4>
+<h4 class='title is-4 has-text-link'>Requests</h4>
 
 <% unless @pending_requests.empty? %>
 <div class="columns is-multiline">
   <% @pending_requests.each do |req| %>
-  <% user = req.user %>
-  <div class='column is-3'>
+    <% user = req.user %>
+    <div class='column is-3-widescreen is-4-desktop is-6-tablet is-12-mobile'>
     <%= render partial: "user_col", object: user, as: 'user' %>
     <%= link_to(accept_user_friend_requests_path(user_id: user.id, request_id: req.id), class:'button is-rounded is-small is-primary is-light') do %>
       <span class="icon">
         <i class="fa fa-check is-small"></i>
       </span>
     <% end %>
-
     <%= link_to(decline_user_friend_requests_path(user_id: user.id, request_id: req.id), class:'button is-rounded is-small is-warning is-light') do %>
       <span class="icon">
         <i class="fa fa-times is-small"></i>
@@ -34,23 +33,34 @@
 </div>
 <% end %>
 
+<h4 class='title is-4 has-text-link'>Pending</h4>
+
 <% unless @sent_requests.empty? %>
-<% @sent_requests.each do |request| %>
-<%= "waiting for "%>
-<% user = User.find(request.friend_id) %>
-<%= link_to  user.name, user_path(user) %>
-<%= " to accept"%>
-<% end %>
+  <div class="columns is-multiline">
+    <% @sent_requests.each do |req| %>
+    <% user = req.recipient %>
+      <div class='column is-3-widescreen is-4-desktop is-6-tablet is-12-mobile'>
+        <%= render partial: "user_col", object: user, as: 'user' %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 
-<h4 class='title is-4 has-text-link'>Other Users</h4>
+<h4 class='title is-4 has-text-link'>Future Friends?</h4>
 
-<% @users.each do |friend| %>
-<% unless friend == current_user %>
-<% if current_user.possible_friend?(friend) %>
-<%= link_to friend.name, user_path(friend) %></br>
-<%= link_to  "add friend", user_friend_requests_path(friend.id),
-                                            method: :post %></br></br>
-<% end %>
-<% end %>
-<% end %>
+<div class="columns is-multiline">
+  <% @users.each do |friend| %>
+    <% unless friend == current_user %>
+      <% if current_user.possible_friend?(friend) %>
+        <div class='column is-3-widescreen is-4-desktop is-6-tablet is-12-mobile'>
+          <%= render partial: "user_col", object: friend, as: 'user' %>
+          <%= link_to(user_friend_requests_path(friend.id), method: :post, class:'button is-rounded is-small is-primary is-light') do %>
+            <span class="icon">
+              <i class="fa fa-plus is-small"></i>
+            </span>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
